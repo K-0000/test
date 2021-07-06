@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <title>Rice Analysis</title>
+    <style>
+        body {
+          background-color: black;
+        }
+		.button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 0.5px 15px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 14px;
+			margin: 6px 2px;
+			cursor: pointer;
+		}
+		.button1 {
+			background-color: white; 
+			color: black; 
+			border: 2px solid #4CAF50;
+		}
+		input[type=file]:focus {
+			background-color: white;
+		}
+		label{
+		  color: #00FF00;
+          text-align: center;
+          font_family:Monospace;
+		}
+        h1 {
+          color: #00FF00;
+          text-align: center;
+          font_family:Monospace;
+        }
+		
+        h2 {
+          color: #00FF00;
+          text-align: left;
+          font_family:Monospace;
+        }
+		
+        img {
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          padding: 5px;
+          width: 260px;
+        }
+        
+        p {
+          color: #00FF00;
+          font-family: Monospace;
+          font-size: 15px;
+        }
+  </style>
+  </head>
+
+
+
+  <body class="text-center">
+    <form class="form-upload" method=post enctype=multipart/form-data>
+      <h1>Welcome To Rice Analysis Test</h1>
+	  <label>Please Upload the image for weight measurement</label><br>
+      <input type="file" id="image2" name="image2" class="form-control" required autofocus><br><br><br>
+      <label>Please Upload the image that you want to analyze</label><br>
+      <input type="file" id="image" name="image" class="form-control" required autofocus>
+      <br><button class="button button1" type="submit">Analyze</button>
+      <h2>Result Detils</h2>
+	  <p> Total rice grain: {{total}} </p>
+	  <p> Number of Head Rice:{{head_co}} </p>
+	  <p> Weight percentage of Head Rice:{{head_w}}% </p>
+	  <p> Number of LargeBroken Rice:{{large_co}} </p>
+	  <p> Weight percentage of LargeBroken Rice:{{head_lb}}% </p>
+	  <p> Number of SmallBroken Rice:{{small_co}} </p>
+	  
+	  <h2>Quality Detils</h2>
+	  <p> Good grains: {{good}} % </p>
+	  <p> Disqualified grains:{{dis}} % </p>
+	  <p> Yellow grains:{{yel}} %</p>
+	  <p> Black grains:{{bla}} %</p>
+	  <p> red grains:{{red}} %</p>
+	  <p> chalky grains:{{cha}}% </p>
+	  
+      
+	  <h2>Test Result Image </h2>
+	  
+      <img src="{{url_for('static', filename="result/"+image_loc, style="width:128px;height:128p")}}">
+
+    </form>
+  </body>
+</html>
