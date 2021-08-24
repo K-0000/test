@@ -12,8 +12,6 @@ import os
 import pandas as pd
 import seaborn as sns  
 from tqdm import tqdm
-from tkinter import Tk
-from tkinter.filedialog import askopenfilename
 import sys 
 from scipy.spatial import distance as dist
 from imutils import perspective
@@ -31,7 +29,7 @@ labels = []
 ricetypes = []
 
 app = Flask(__name__, template_folder='temp')
-upload = "C:/Users/PYAEPHYOTHIN/Desktop/project0/upload-folder"
+upload = "upload-folder"
 
 @app.route("/", methods=["GET", "POST"])
 def upload_analyze():
@@ -84,12 +82,14 @@ def upload_analyze():
             headB=0
             lagbro=0
             smabro=0
-            good=0
-            dis=0
-            yel=0
-            bla=0
-            red=0
-            cha=0
+            G1=0
+            BD=0
+            CDC=0
+            IFD=0
+            OV1=0
+            PC=0
+            R1=0
+            Y1=0
             total_ar=0
             total_ar1=0
             total_ar2=0
@@ -158,18 +158,22 @@ def upload_analyze():
                     proba = model.predict(image)[0]
                     idx = np.argmax(proba)
                     label = lb.classes_[idx]
-                    if(label == "good"):
-                        good+=1
-                    if(label == "disqualified"):
-                        dis+=1
-                    if(label == "yellow"):
-                        yel+=1
-                    if(label == "black"):
-                        bla+=1
-                    if(label == "red"):
-                        red+=1
-                    if(label == "chalky"):
-                        cha+=1
+                    if(label == "G1"):
+                        G1+=1
+                    if(label == "BD"):
+                        BD+=1
+                    if(label == "CDC"):
+                       CDC+=1
+                    if(label == "IFD"):
+                       IFD+=1
+                    if(label == "OV1"):
+                        OV1+=1
+                    if(label == "PC"):
+                        PC+=1
+                    if(label == "R1"):
+                        R1+=1
+                    if(label == "Y1"):
+                        Y1+=1
                     label = "{}".format(label)
                     for i in cnt:
                         counts[label] = counts.get(label, 0) + 1
@@ -196,10 +200,10 @@ def upload_analyze():
             print(weigthH)
             weigthS=(W2/(WH+W1+W2))*100
             return render_template('index2.html',total=len(contours) , head_co= headB, large_co= lagbro, small_co= smabro ,result="crop.jpg" ,image_loc=image_file.filename,
-            good=round(good/len(contours)*100,2), dis=round(dis/len(contours)*100,2), yel=round(yel/len(contours)*100,2),bla=round(bla/len(contours)*100,2),
-            red=round(red/len(contours)*100,2), cha=round(cha/len(contours)*100,2),head_w=round(weigthH,2),head_lb=round(weigthlb,2)
+            G1=round(G1/len(contours)*100,2), BD=round(BD/len(contours)*100,2), CDC=round(CDC/len(contours)*100,2),IFD=round(IFD/len(contours)*100,2),
+            OV1=round(OV1/len(contours)*100,2), PC=round(PC/len(contours)*100,2),R1=round(R1/len(contours)*100,2),Y1=round(Y1/len(contours)*100,2),head_w=round(weigthH,2),head_lb=round(weigthlb,2)
             )
-    return render_template('index2.html',total="None",head_co="None",large_co="None", small_co="None" ,result="crop.jpg",image_loc="crop.jpg",good="None", dis="None", yel="None",bla="None",red="None", cha="None"
+    return render_template('index2.html',total="None",head_co="None",large_co="None", small_co="None" ,result="crop.jpg",image_loc="crop.jpg",G1="None", BD="None", CDC="None",IFD="None",OV1="None", PC="None",R1="None",Y1="None"
     ,head_w="None",head_lb="None"
     )
 
